@@ -4,9 +4,6 @@ on:
   push:
     paths:
     - 'homework1/**'
-  pull-request:
-    paths:
-    - 'homework1/**'
 jobs:
   build:
     runs-on: ubuntu-latest
