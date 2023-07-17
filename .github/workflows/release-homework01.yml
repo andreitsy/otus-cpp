@@ -3,11 +3,35 @@ name: 'C++ CI'
 on:
   pull_request:
     types:
+      - reopened
+      - opened
+      - edited
       - closed
     paths:
     - 'homework01/**'
 
 jobs:
+  test-release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: cmake -B./homework01-build -S./homework01 -DPATCH_VERSION=${{ github.run_number }} 
+      - run: cmake --build ./homework01-build
+      - run: cmake --build ./homework01-build --target test
+      - name: Test release 
+        id: test_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.OTUS_CPP_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+ 
   build-release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
