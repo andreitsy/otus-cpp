@@ -20,8 +20,6 @@ jobs:
       - run: cmake -B./homework01-build -S./homework01 -DPATCH_VERSION=${{ github.run_number }} 
       - run: cmake --build ./homework01-build
       - run: cmake --build ./homework01-build --target test
-      - name: Test release 
-        id: test_release
  
   build-release:
     if: github.event.pull_request.merged == true
