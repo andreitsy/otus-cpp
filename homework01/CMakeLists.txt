@@ -30,11 +30,13 @@ target_include_directories(helloworld_cli PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}")
 
 # CPack package
-install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
-include(CPack)
-
-set(CPACK_GENERATOR DEB)
+set(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "andrei.tsypilnikov92@gmail.com")
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_CONTACT andrei.tsypilnikov92@gmail.com)
+
+include(CPack)
+
+install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
