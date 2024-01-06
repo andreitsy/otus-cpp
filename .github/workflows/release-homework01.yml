@@ -24,6 +24,7 @@ jobs:
   build-release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: actions/checkout@v2
         with:
