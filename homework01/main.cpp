@@ -1,7 +1,7 @@
 #include <iostream>
-#include "version.h"
+#include "lib.h"
 
 int main() {
-    std::cout << "Build '" << version() << "'" << std::endl;
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Version: " << version() << std::endl;
+    std::cout << hello_world() << std::endl;
 }
